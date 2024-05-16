@@ -53,6 +53,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
       // XR globals.
       let xrButton = null;
+      let xrButton2 = null;
+      let xrButton3 = null;
       let xrRefSpace = null;
       let xrViewerSpace = null;
       let xrHitTestSource = null;
@@ -63,12 +65,26 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       let scene = new Scene();
       scene.enableStats(false);
 
-      let arObject = new Node();
-      arObject.visible = false;
-      scene.addNode(arObject);
+      let arObject1 = new Node();
+      arObject1.visible = false;
+      scene.addNode(arObject1);
+
+      let arObject2 = new Node();
+      arObject2.visible = false;
+      scene.addNode(arObject2);
+
+      let arObject3 = new Node();
+      arObject3.visible = false;
+      scene.addNode(arObject3);
 
       let flower = new Gltf2Node({url: 'media/gltf/sunflower/cube.gltf'});
-      arObject.addNode(flower);
+      arObject1.addNode(flower);
+
+      let tree = new Gltf2Node({url: 'media/gltf/stereo/stereo.gltf'});
+      arObject2.addNode(tree);
+
+      let house = new Gltf2Node({url: 'media/gltf/controller/controller.gltf'});
+      arObject3.addNode(house);
 
       let reticle = new Gltf2Node({url: 'media/gltf/reticle/reticle.gltf'});
       reticle.visible = false;
@@ -76,45 +92,75 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
       // Having a really simple drop shadow underneath an object helps ground
       // it in the world without adding much complexity.
-      let shadow = new DropShadowNode();
-      vec3.set(shadow.scale, 0.15, 0.15, 0.15);
-      arObject.addNode(shadow);
+      let shadow1 = new DropShadowNode();
+      vec3.set(shadow1.scale, 0.15, 0.15, 0.15);
+      arObject1.addNode(shadow1);
 
-      const MAX_FLOWERS = 30;
-      let flowers = [];
+      let shadow2 = new DropShadowNode();
+      vec3.set(shadow2.scale, 0.15, 0.15, 0.15);
+      arObject2.addNode(shadow2);
+
+      let shadow3 = new DropShadowNode();
+      vec3.set(shadow3.scale, 0.15, 0.15, 0.15);
+      arObject3.addNode(shadow3);
+
+      const MAX_OBJECTS = 30;
+      let objects = [];
 
       // Ensure the background is transparent for AR.
       scene.clear = false;
 
       function initXR() {
         xrButton = new WebXRButton({
-          onRequestSession: onRequestSession,
+          onRequestSession: () => onRequestSession(1),
           onEndSession: onEndSession,
-          textEnterXRTitle: "START AR",
-          textXRNotFoundTitle: "AR NOT FOUND",
-          textExitXRTitle: "EXIT  AR",
+          textEnterXRTitle: "START AR 1",
+          textXRNotFoundTitle: "AR 1 NOT FOUND",
+          textExitXRTitle: "EXIT AR 1",
         });
         document.querySelector('header').appendChild(xrButton.domElement);
+
+        xrButton2 = new WebXRButton({
+          onRequestSession: () => onRequestSession(2),
+          onEndSession: onEndSession,
+          textEnterXRTitle: "START AR 2",
+          textXRNotFoundTitle: "AR 2 NOT FOUND",
+          textExitXRTitle: "EXIT AR 2",
+        });
+        document.querySelector('header').appendChild(xrButton2.domElement);
+
+        xrButton3 = new WebXRButton({
+          onRequestSession: () => onRequestSession(3),
+          onEndSession: onEndSession,
+          textEnterXRTitle: "START AR 3",
+          textXRNotFoundTitle: "AR 3 NOT FOUND",
+          textExitXRTitle: "EXIT AR 3",
+        });
+        document.querySelector('header').appendChild(xrButton3.domElement);
 
         if (navigator.xr) {
           navigator.xr.isSessionSupported('immersive-ar')
                       .then((supported) => {
             xrButton.enabled = supported;
+            xrButton2.enabled = supported;
+            xrButton3.enabled = supported;
           });
         }
       }
 
-      function onRequestSession() {
+      function onRequestSession(buttonNumber) {
         return navigator.xr.requestSession('immersive-ar', {requiredFeatures: ['local', 'hit-test']})
                            .then((session) => {
-          xrButton.setSession(session);
-          onSessionStarted(session);
+          if (buttonNumber === 1) xrButton.setSession(session);
+          if (buttonNumber === 2) xrButton2.setSession(session);
+          if (buttonNumber === 3) xrButton3.setSession(session);
+          onSessionStarted(session, buttonNumber);
         });
       }
 
-      function onSessionStarted(session) {
+      function onSessionStarted(session, buttonNumber) {
         session.addEventListener('end', onSessionEnded);
-        session.addEventListener('select', onSelect);
+        session.addEventListener('select', (event) => onSelect(event, buttonNumber));
 
         if (!gl) {
           gl = createWebGLContext({
@@ -154,35 +200,44 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
       function onSessionEnded(event) {
         xrButton.setSession(null);
+        xrButton2.setSession(null);
+        xrButton3.setSession(null);
       }
 
       // Adds a new object to the scene at the
       // specified transform.
-      function addARObjectAt(matrix) {
-        let newFlower = arObject.clone();
-        newFlower.visible = true;
-        newFlower.matrix = matrix;
-        scene.addNode(newFlower);
+      function addARObjectAt(matrix, buttonNumber) {
+        let newObject;
+        if (buttonNumber === 1) {
+          newObject = arObject1.clone();
+        } else if (buttonNumber === 2) {
+          newObject = arObject2.clone();
+        } else if (buttonNumber === 3) {
+          newObject = arObject3.clone();
+        }
+        newObject.visible = true;
+        newObject.matrix = matrix;
+        scene.addNode(newObject);
 
-        flowers.push(newFlower);
+        objects.push(newObject);
 
         // For performance reasons if we add too many objects start
         // removing the oldest ones to keep the scene complexity
         // from growing too much.
-        if (flowers.length > MAX_FLOWERS) {
-          let oldFlower = flowers.shift();
-          scene.removeNode(oldFlower);
+        if (objects.length > MAX_OBJECTS) {
+          let oldObject = objects.shift();
+          scene.removeNode(oldObject);
         }
       }
 
       let rayOrigin = vec3.create();
       let rayDirection = vec3.create();
-      function onSelect(event) {
+      function onSelect(event, buttonNumber) {
         if (reticle.visible) {
           // The reticle should already be positioned at the latest hit point, 
           // so we can just use it's matrix to save an unnecessary call to 
           // event.frame.getHitTestResults.
-          addARObjectAt(reticle.matrix);
+          addARObjectAt(reticle.matrix, buttonNumber);
         }
       }
 
