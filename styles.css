@@ -2,13 +2,14 @@
 
 :root {
 	--primary-color: #126eb9;
-	--background-color: #f9f5f0;
+	--background-color: #f0f3f9;
 	--dark-color: #031625;
 }
 
 html {
 	font-size: 62.5%;
 	font-family: 'Poppins', sans-serif;
+	background-color: #f0f3f9;
 }
 
 * {
@@ -69,6 +70,8 @@ html {
 	justify-content: center;
 	gap: 2rem;
 	margin-bottom: 1rem;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .container-options span {
@@ -106,7 +109,6 @@ html {
 	cursor: pointer;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 	border-radius: 25px;
-	
 }
 
 .container-img {
