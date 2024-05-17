@@ -131,10 +131,12 @@
       house: new Node()
     };
 
-    models.sunflower.addNode(new Gltf2Node({ url: 'media/gltf/prueba/Modeloseparado2.gltf' }));
+    // Add models to the scene
+    models.sunflower.addNode(new Gltf2Node({ url: 'media/gltf/prueba/cube.gltf' }));
     models.tree.addNode(new Gltf2Node({ url: 'media/gltf/stereo/stereo.gltf' }));
     models.house.addNode(new Gltf2Node({ url: 'media/gltf/headset/headset.gltf' }));
 
+    // Initialize the models
     Object.values(models).forEach(model => {
       model.visible = false;
       let shadow = new DropShadowNode();
@@ -143,6 +145,7 @@
       scene.addNode(model);
     });
 
+    // Add reticle to the scene
     let reticle = new Gltf2Node({ url: 'media/gltf/reticle/reticle.gltf' });
     reticle.visible = false;
     scene.addNode(reticle);
@@ -168,7 +171,7 @@
       gl.uniform3fv(lightColorLocation, lightColor);
 
       // Set up ambient light
-      let ambientLightColor = [0.3, 0.3, 0.3];
+      let ambientLightColor = [0.5, 0.5, 0.5]; // Incrementar la luz ambiental
       let ambientLightColorLocation = gl.getUniformLocation(program, "u_ambientLightColor");
 
       gl.uniform3fv(ambientLightColorLocation, ambientLightColor);
@@ -357,7 +360,12 @@
       vec3 diffuse = u_lightColor * light;
       vec3 ambient = u_ambientLightColor;
 
-      gl_FragColor = vec4(diffuse + ambient, 1.0);
+      vec3 color = diffuse + ambient;
+
+      // Ensure the color is not too dark
+      color = mix(color, vec3(1.0), 0.2);
+
+      gl_FragColor = vec4(color, 1.0);
     }
   </script>
 </body>
