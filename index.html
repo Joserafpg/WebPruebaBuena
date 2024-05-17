@@ -1,251 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Tienda</title>
-		<link rel="stylesheet" href="styles.css" />
-    <link rel="icon" href="https://i.pinimg.com/originals/1c/e1/bf/1ce1bf1b30c09ed47a28c9dc5a1e6876.jpg" type="image/jpg">
-	</head>
-	<body>
-		<main class="main-content">
-			<section class="container top-products">
-				<h1 class="heading-1">Mejores Productos</h1>
 
-				<div class="container-options">
-					<span class="active">Destacados</span>
-					<span>Más recientes</span>
-					<span>Mejores Vendidos</span>
-				</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tienda</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="https://i.pinimg.com/originals/1c/e1/bf/1ce1bf1b30c09ed47a28c9dc5a1e6876.jpg" type="image/jpg">
+</head>
 
-				<div class="container-products">
-					<!-- Producto 1 -->
-					<div class="card-product" data-model="sunflower">
-						<div class="container-img">
-							<img src="https://img.freepik.com/premium-vector/white-package-box-product-packing_350503-114.jpg" alt="Cafe Irish" />
-							<span class="discount">-13%</span>
-							<div class="button-group">
-								<span><i class="fa-regular fa-eye"></i></span>
-								<span><i class="fa-regular fa-heart"></i></span>
-								<span><i class="fa-solid fa-code-compare"></i></span>
-							</div>
-						</div>
-						<div class="content-card-product">
-							<div class="stars">
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-							</div>
-							<h3>Cubo</h3>
-							<span class="add-cart"><i class="fa-solid fa-basket-shopping"></i></span>
-							<p class="price">$4.60 <span>$5.30</span></p>
-						</div>
-					</div>
-					
-					<!-- Producto 2 -->
-					<div class="card-product" data-model="tree">
-						<div class="container-img">
-							<img src="https://i.pinimg.com/originals/85/12/07/8512072b9476c38e705a540634dbfb8c.png" alt="Cafe Irish" />
-							<span class="discount">-13%</span>
-							<div class="button-group">
-								<span><i class="fa-regular fa-eye"></i></span>
-								<span><i class="fa-regular fa-heart"></i></span>
-								<span><i class="fa-solid fa-code-compare"></i></span>
-							</div>
-						</div>
-						<div class="content-card-product">
-							<div class="stars">
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-							</div>
-							<h3>Bocina</h3>
-							<span class="add-cart"><i class="fa-solid fa-basket-shopping"></i></span>
-							<p class="price">$4.60 <span>$5.30</span></p>
-						</div>
-					</div>
-					
-					<!-- Producto 3 -->
-					<div class="card-product" data-model="house">
-						<div class="container-img">
-							<img src="https://img.freepik.com/vector-premium/gafas-realidad-virtual-joystick-aislado-sobre-fondo-blanco-estilo-dibujo-contorno-negro_485992-255.jpg?w=826" alt="Cafe Irish" />
-							<span class="discount">-13%</span>
-							<div class="button-group">
-								<span><i class="fa-regular fa-eye"></i></span>
-								<span><i class="fa-regular fa-heart"></i></span>
-								<span><i class="fa-solid fa-code-compare"></i></span>
-							</div>
-						</div>
-						<div class="content-card-product">
-							<div class="stars">
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-regular fa-star"></i>
-							</div>
-							<h3>Gafas</h3>
-							<span class="add-cart"><i class="fa-solid fa-basket-shopping"></i></span>
-							<p class="price">$4.60 <span>$5.30</span></p>
-						</div>
-					</div>
-				</div>
-			</section>
-		</main>
+<body>
+  <main class="main-content">
+    <section class="container top-products">
+      <h1 class="heading-1">Productos</h1>
 
-		<script src="https://kit.fontawesome.com/81581fb069.js" crossorigin="anonymous"></script>
-		<script type="module">
-			import { WebXRButton } from './js/util/webxr-button.js';
-			import { Scene } from './js/render/scenes/scene.js';
-			import { Renderer, createWebGLContext } from './js/render/core/renderer.js';
-			import { Node } from './js/render/core/node.js';
-			import { Gltf2Node } from './js/render/nodes/gltf2.js';
-			import { DropShadowNode } from './js/render/nodes/drop-shadow.js';
-			import { vec3 } from './js/render/math/gl-matrix.js';
+      <div class="container-options">
+        <span class="active">Destacados</span>
+        <span>Más recientes</span>
+        <span>Mejores Vendidos</span>
+      </div>
 
-			// XR globals.
-			let xrButton = null;
-			let xrRefSpace = null;
-			let xrViewerSpace = null;
-			let xrHitTestSource = null;
+      <div class="container-products">
+        <!-- Producto 1 -->
+        <div class="card-product" data-model="sunflower">
+          <div class="container-img">
+            <img src="https://img.freepik.com/premium-vector/white-package-box-product-packing_350503-114.jpg"
+              alt="Cafe Irish" />
+            <span class="discount">-13%</span>
+            <div class="button-group">
+              <span><i class="fa-regular fa-eye"></i></span>
+              <span><i class="fa-regular fa-heart"></i></span>
+              <span><i class="fa-solid fa-code-compare"></i></span>
+            </div>
+          </div>
+          <div class="content-card-product">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+            </div>
+            <h3>Cubo</h3>
+            <span class="add-cart"><i class="fa-solid fa-basket-shopping"></i></span>
+            <p class="price">$4.60 <span>$5.30</span></p>
+          </div>
+        </div>
 
-			// WebGL scene globals.
-			let gl = null;
-			let renderer = null;
-			let scene = new Scene();
-			scene.enableStats(false);
+        <!-- Producto 2 -->
+        <div class="card-product" data-model="tree">
+          <div class="container-img">
+            <img src="https://i.pinimg.com/originals/85/12/07/8512072b9476c38e705a540634dbfb8c.png" alt="Cafe Irish" />
+            <span class="discount">-13%</span>
+            <div class="button-group">
+              <span><i class="fa-regular fa-eye"></i></span>
+              <span><i class="fa-regular fa-heart"></i></span>
+              <span><i class="fa-solid fa-code-compare"></i></span>
+            </div>
+          </div>
+          <div class="content-card-product">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+            </div>
+            <h3>Bocina</h3>
+            <span class="add-cart"><i class="fa-solid fa-basket-shopping"></i></span>
+            <p class="price">$4.60 <span>$5.30</span></p>
+          </div>
+        </div>
 
-			let models = {
-				sunflower: new Node(),
-				tree: new Node(),
-				house: new Node()
-			};
+        <!-- Producto 3 -->
+        <div class="card-product" data-model="house">
+          <div class="container-img">
+            <img
+              src="https://img.freepik.com/vector-premium/gafas-realidad-virtual-joystick-aislado-sobre-fondo-blanco-estilo-dibujo-contorno-negro_485992-255.jpg?w=826"
+              alt="Cafe Irish" />
+            <span class="discount">-13%</span>
+            <div class="button-group">
+              <span><i class="fa-regular fa-eye"></i></span>
+              <span><i class="fa-regular fa-heart"></i></span>
+              <span><i class="fa-solid fa-code-compare"></i></span>
+            </div>
+          </div>
+          <div class="content-card-product">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+            </div>
+            <h3>Gafas</h3>
+            <span class="add-cart"><i class="fa-solid fa-basket-shopping"></i></span>
+            <p class="price">$4.60 <span>$5.30</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-			models.sunflower.addNode(new Gltf2Node({ url: 'media/gltf/sunflower/cube.gltf' }));
-			models.tree.addNode(new Gltf2Node({ url: 'media/gltf/stereo/stereo.gltf' }));
-			models.house.addNode(new Gltf2Node({ url: 'media/gltf/headset/headset.gltf' }));
+  <script src="https://kit.fontawesome.com/81581fb069.js" crossorigin="anonymous"></script>
+  <script type="module">
+    import { WebXRButton } from './js/util/webxr-button.js';
+    import { Scene } from './js/render/scenes/scene.js';
+    import { Renderer, createWebGLContext } from './js/render/core/renderer.js';
+    import { Node } from './js/render/core/node.js';
+    import { Gltf2Node } from './js/render/nodes/gltf2.js';
+    import { DropShadowNode } from './js/render/nodes/drop-shadow.js';
+    import { vec3 } from './js/render/math/gl-matrix.js';
 
-			Object.values(models).forEach(model => {
-				model.visible = false;
-				let shadow = new DropShadowNode();
-				vec3.set(shadow.scale, 0.15, 0.15, 0.15);
-				model.addNode(shadow);
-				scene.addNode(model);
-			});
+    // XR globals.
+    let xrButton = null;
+    let xrRefSpace = null;
+    let xrViewerSpace = null;
+    let xrHitTestSource = null;
 
-			let reticle = new Gltf2Node({ url: 'media/gltf/reticle/reticle.gltf' });
-			reticle.visible = false;
-			scene.addNode(reticle);
+    // WebGL scene globals.
+    let gl = null;
+    let renderer = null;
+    let scene = new Scene();
+    scene.enableStats(false);
 
-			const MAX_OBJECTS = 30;
-			let objects = [];
+    let models = {
+      sunflower: new Node(),
+      tree: new Node(),
+      house: new Node()
+    };
 
-			scene.clear = false;
+    models.sunflower.addNode(new Gltf2Node({ url: 'media/gltf/sunflower/cube.gltf' }));
+    models.tree.addNode(new Gltf2Node({ url: 'media/gltf/stereo/stereo.gltf' }));
+    models.house.addNode(new Gltf2Node({ url: 'media/gltf/headset/headset.gltf' }));
 
-			function initXR() {
-				if (navigator.xr) {
-					navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
-						if (supported) {
-							document.querySelectorAll('.card-product').forEach((product) => {
-								product.addEventListener('click', () => {
-									const modelName = product.getAttribute('data-model');
-									onRequestSession(modelName);
-								});
-							});
-						}
-					});
-				}
-			}
+    Object.values(models).forEach(model => {
+      model.visible = false;
+      let shadow = new DropShadowNode();
+      vec3.set(shadow.scale, 0.15, 0.15, 0.15);
+      model.addNode(shadow);
+      scene.addNode(model);
+    });
 
-			function onRequestSession(modelName) {
-				return navigator.xr.requestSession('immersive-ar', { requiredFeatures: ['local', 'hit-test'] })
-					.then((session) => {
-						onSessionStarted(session, modelName);
-					});
-			}
+    let reticle = new Gltf2Node({ url: 'media/gltf/reticle/reticle.gltf' });
+    reticle.visible = false;
+    scene.addNode(reticle);
 
-			function onSessionStarted(session, modelName) {
-				session.addEventListener('end', onSessionEnded);
-				session.addEventListener('select', (event) => onSelect(event, modelName));
+    const MAX_OBJECTS = 30;
+    let objects = [];
 
-				if (!gl) {
-					gl = createWebGLContext({ xrCompatible: true });
-					renderer = new Renderer(gl);
-					scene.setRenderer(renderer);
-				}
+    scene.clear = false;
 
-				session.updateRenderState({ baseLayer: new XRWebGLLayer(session, gl) });
+    function initXR() {
+      if (navigator.xr) {
+        navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
+          document.querySelectorAll('.card-product').forEach((product) => {
+            if (!supported) {
+              product.classList.add('disabled');
+            } else {
+              product.addEventListener('click', () => {
+                const modelName = product.getAttribute('data-model');
+                onRequestSession(modelName);
+              });
+            }
+          });
+        });
+      } else {
+        document.querySelectorAll('.card-product').forEach((product) => {
+          product.classList.add('disabled');
+        });
+      }
+    }
 
-				session.requestReferenceSpace('viewer').then((refSpace) => {
-					xrViewerSpace = refSpace;
-					session.requestHitTestSource({ space: xrViewerSpace }).then((hitTestSource) => {
-						xrHitTestSource = hitTestSource;
-					});
-				});
 
-				session.requestReferenceSpace('local').then((refSpace) => {
-					xrRefSpace = refSpace;
-					session.requestAnimationFrame(onXRFrame);
-				});
-			}
+    function onRequestSession(modelName) {
+      return navigator.xr.requestSession('immersive-ar', { requiredFeatures: ['local', 'hit-test'] })
+        .then((session) => {
+          onSessionStarted(session, modelName);
+        });
+    }
 
-			function onEndSession(session) {
-				xrHitTestSource.cancel();
-				xrHitTestSource = null;
-				session.end();
-			}
+    function onSessionStarted(session, modelName) {
+      session.addEventListener('end', onSessionEnded);
+      session.addEventListener('select', (event) => onSelect(event, modelName));
 
-			function onSessionEnded(event) {
-				xrButton.setSession(null);
-			}
+      if (!gl) {
+        gl = createWebGLContext({ xrCompatible: true });
+        renderer = new Renderer(gl);
+        scene.setRenderer(renderer);
+      }
 
-			function addARObjectAt(matrix, modelName) {
-				let newObject = models[modelName].clone();
-				newObject.visible = true;
-				newObject.matrix = matrix;
-				scene.addNode(newObject);
+      session.updateRenderState({ baseLayer: new XRWebGLLayer(session, gl) });
 
-				objects.push(newObject);
+      session.requestReferenceSpace('viewer').then((refSpace) => {
+        xrViewerSpace = refSpace;
+        session.requestHitTestSource({ space: xrViewerSpace }).then((hitTestSource) => {
+          xrHitTestSource = hitTestSource;
+        });
+      });
 
-				if (objects.length > MAX_OBJECTS) {
-					let oldObject = objects.shift();
-					scene.removeNode(oldObject);
-				}
-			}
+      session.requestReferenceSpace('local').then((refSpace) => {
+        xrRefSpace = refSpace;
+        session.requestAnimationFrame(onXRFrame);
+      });
+    }
 
-			function onSelect(event, modelName) {
-				if (reticle.visible) {
-					addARObjectAt(reticle.matrix, modelName);
-				}
-			}
+    function onEndSession(session) {
+      xrHitTestSource.cancel();
+      xrHitTestSource = null;
+      session.end();
+    }
 
-			function onXRFrame(t, frame) {
-				let session = frame.session;
-				let pose = frame.getViewerPose(xrRefSpace);
+    function onSessionEnded(event) {
+      xrButton.setSession(null);
+    }
 
-				reticle.visible = false;
+    function addARObjectAt(matrix, modelName) {
+      let newObject = models[modelName].clone();
+      newObject.visible = true;
+      newObject.matrix = matrix;
+      scene.addNode(newObject);
 
-				if (xrHitTestSource && pose) {
-					let hitTestResults = frame.getHitTestResults(xrHitTestSource);
-					if (hitTestResults.length > 0) {
-						let pose = hitTestResults[0].getPose(xrRefSpace);
-						reticle.visible = true;
-						reticle.matrix = pose.transform.matrix;
-					}
-				}
+      objects.push(newObject);
 
-				scene.startFrame();
-				session.requestAnimationFrame(onXRFrame);
-				scene.drawXRFrame(frame, pose);
-				scene.endFrame();
-			}
+      if (objects.length > MAX_OBJECTS) {
+        let oldObject = objects.shift();
+        scene.removeNode(oldObject);
+      }
+    }
 
-			initXR();
-		</script>
-	</body>
+    function onSelect(event, modelName) {
+      if (reticle.visible) {
+        addARObjectAt(reticle.matrix, modelName);
+      }
+    }
+
+    function onXRFrame(t, frame) {
+      let session = frame.session;
+      let pose = frame.getViewerPose(xrRefSpace);
+
+      reticle.visible = false;
+
+      if (xrHitTestSource && pose) {
+        let hitTestResults = frame.getHitTestResults(xrHitTestSource);
+        if (hitTestResults.length > 0) {
+          let pose = hitTestResults[0].getPose(xrRefSpace);
+          reticle.visible = true;
+          reticle.matrix = pose.transform.matrix;
+        }
+      }
+
+      scene.startFrame();
+      session.requestAnimationFrame(onXRFrame);
+      scene.drawXRFrame(frame, pose);
+      scene.endFrame();
+    }
+
+    initXR();
+  </script>
+</body>
+
 </html>

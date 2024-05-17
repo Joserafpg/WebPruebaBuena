@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-	--primary-color: #c7a17a;
+	--primary-color: #126eb9;
 	--background-color: #f9f5f0;
-	--dark-color: #151515;
+	--dark-color: #031625;
 }
 
 html {
@@ -16,6 +16,19 @@ html {
 	padding: 0;
 	box-sizing: border-box;
 }
+
+.disabled {
+	background-color: #ccc; /* Gris oscuro */
+	pointer-events: none; /* No permitir clics */
+	opacity: 0.6;
+	position: relative; /* Necesario para el pseudo-elemento */
+  }
+  
+  .disabled .button-group,
+  .disabled .stars,
+  .disabled .discount {
+	display: none;
+  }
 
 /* ********************************** */
 /*             UTILIDADES             */
