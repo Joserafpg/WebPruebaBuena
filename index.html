@@ -238,7 +238,7 @@
     </section>
   </main>
 
-  <button id="back-button" style="display:none;">Volver</button>
+  <button id="back-button" style="display:none; position:fixed; top:10px; left:10px; z-index:1000;">Volver</button>
 
   <script src="https://kit.fontawesome.com/81581fb069.js" crossorigin="anonymous"></script>
   <script type="module">
@@ -269,7 +269,7 @@
     };
 
     // Add models to the scene
-    models.sunflower.addNode(new Gltf2Node({ url: 'media/gltf/prueba/Combocementoconbloque.gltf' }));
+    models.sunflower.addNode(new Gltf2Node({ url: 'media/gltf/pared/pared.glb' }));
     models.tree.addNode(new Gltf2Node({ url: 'media/gltf/stereo/stereo.gltf' }));
     models.house.addNode(new Gltf2Node({ url: 'media/gltf/headset/headset.gltf' }));
 
