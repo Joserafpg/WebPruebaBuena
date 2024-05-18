@@ -35,7 +35,7 @@ html {
 /*             UTILIDADES             */
 /* ********************************** */
 .container {
-	max-width: 120rem;
+	max-width: 1500px;
 	margin: 0 auto;
 }
 
@@ -97,7 +97,7 @@ html {
 /* Products */
 .container-products {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
 	gap: 3rem;
 	padding: 10px;
 }
@@ -105,7 +105,6 @@ html {
 .card-product {
 	background-color: #fff;
 	padding: 2rem 3rem;
-	border-radius: 0.5rem;
 	cursor: pointer;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 	border-radius: 25px;
@@ -148,7 +147,6 @@ html {
 .button-group span {
 	border: 1px solid var(--primary-color);
 	padding: 0.8rem;
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
