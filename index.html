@@ -294,25 +294,30 @@
 
     // Add lighting function
     function addLights(gl, program) {
-      // Use shader program
       gl.useProgram(program);
 
-      // Set up directional light
+      // Luz direccional
       let lightDirection = [-0.5, -1.0, -0.5];
       let lightColor = [1.0, 1.0, 1.0];
-
       let lightDirectionLocation = gl.getUniformLocation(program, "u_lightDirection");
       let lightColorLocation = gl.getUniformLocation(program, "u_lightColor");
-
       gl.uniform3fv(lightDirectionLocation, lightDirection);
       gl.uniform3fv(lightColorLocation, lightColor);
 
-      // Set up ambient light
-      let ambientLightColor = [500, 500, 500]; // Incrementar la luz ambiental
+      // Luz ambiental
+      let ambientLightColor = [1.0, 1.0, 1.0];
       let ambientLightColorLocation = gl.getUniformLocation(program, "u_ambientLightColor");
-
       gl.uniform3fv(ambientLightColorLocation, ambientLightColor);
+
+      // Luz adicional
+      let additionalLightDirection = [0.5, 1.0, 0.5];
+      let additionalLightColor = [0.5, 0.5, 0.5];
+      let additionalLightDirectionLocation = gl.getUniformLocation(program, "u_additionalLightDirection");
+      let additionalLightColorLocation = gl.getUniformLocation(program, "u_additionalLightColor");
+      gl.uniform3fv(additionalLightDirectionLocation, additionalLightDirection);
+      gl.uniform3fv(additionalLightColorLocation, additionalLightColor);
     }
+
 
     function initXR() {
       if (navigator.xr) {
@@ -479,14 +484,14 @@
   <script id="vertex-shader" type="x-shader/x-vertex">
     attribute vec4 a_position;
     attribute vec3 a_normal;
-
+  
     uniform mat4 u_modelViewMatrix;
     uniform mat4 u_projectionMatrix;
     uniform mat4 u_normalMatrix;
-
+  
     varying vec3 v_normal;
     varying vec3 v_position;
-
+  
     void main() {
       gl_Position = u_projectionMatrix * u_modelViewMatrix * a_position;
       v_position = vec3(u_modelViewMatrix * a_position);
@@ -497,29 +502,30 @@
   <!-- Fragment shader -->
   <script id="fragment-shader" type="x-shader/x-fragment">
     precision mediump float;
-
+  
     uniform vec3 u_lightDirection;
     uniform vec3 u_lightColor;
     uniform vec3 u_ambientLightColor;
-
+  
     varying vec3 v_normal;
     varying vec3 v_position;
-
+  
     void main() {
       vec3 normal = normalize(v_normal);
       float light = max(dot(normal, normalize(u_lightDirection)), 0.0);
-
+  
       vec3 diffuse = u_lightColor * light;
-      vec3 ambient = u_ambientLightColor;
-
+      vec3 ambient = u_ambientLightColor * 1.5; // Incrementar la luz ambiental
+  
       vec3 color = diffuse + ambient;
-
+  
       // Ensure the color is not too dark
       color = mix(color, vec3(1.0), 0.2);
-
+  
       gl_FragColor = vec4(color, 1.0);
     }
   </script>
+
 </body>
 
 </html>
